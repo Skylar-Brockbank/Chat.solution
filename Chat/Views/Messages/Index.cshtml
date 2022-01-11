@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Chat.Models;
+@model Chat.Models.Message
+
+<h3>Who do you want to chat with</h3>
+
+@using (Html.BeginForm())
+{
+  @Html.Label("Select a user")
+  @Html.DropDownList("SelectUser")
+
+  <input type="submit" value="Chat!" class="btn btn-default" />
+}

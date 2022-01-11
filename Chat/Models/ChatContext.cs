@@ -6,6 +6,7 @@ namespace Chat.Models
   public class ChatContext : IdentityDbContext<ApplicationUser>
   {
     public DbSet<ApplicationUser> ChatUsers {get;set;}
+    public DbSet<Message> Messages {get;set;}
     public ChatContext(DbContextOptions options) : base(options){}
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
