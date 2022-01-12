@@ -2,7 +2,7 @@
   Layout = "_Layout";
 }
 @using Chat.Models
-
+<meta http-equiv="refresh" content="5" />
 
 <h2>Get your chat on you two!</h2>
 
@@ -12,6 +12,7 @@
 }
 else
 {
+  @* =====================all of this will need to go into a partial view=========================== *@
   <div id="message-box">
   @foreach(Message m in Model)
   {
@@ -24,14 +25,13 @@ else
     }
   }
   </div>
+  @* ====================End of partial view items ==========================*@
+  @*
+  You're planning to make a javascript file that's availible from the root directory.
+  Then you're gonna rig it to grab a spcified div and load a partial view every 1000 miliseconds
+  see => https://www.c-sharpcorner.com/blogs/auto-refresh-a-partial-view-of-a-page-in-mvc1
+  *@
 }
-@* @using(Html.BeginForm())
-{
-  @Html.Hidden("metest",ViewBag.SenderId)
-  @Html.Hidden("idtest",ViewBag.RecieverId)
-  @Html.TextBoxFor("msg")
-  <input type = "submit" value="SEND IT I DARE YOU! Coward">
-} *@
 
   <form action="Details" method="POST">
     <input name = "msg" id = "msg" type = "text">
