@@ -64,4 +64,4 @@ _An application that lets users chat with one another_
 ## License
 
 *[MIT](https://opensource.org/licenses/MIT) Licenced
-*Copyright (c) _2021_ _Jacob Wilson_ _Matt Luker_ _Skylar Brockbank_
+*Copyright (c) _2021_ _Jacob Wilson,_ _Matt Luker,_ _Skylar Brockbank_
