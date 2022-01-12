@@ -1,13 +1,12 @@
-<meta http-equiv="refresh" content="5"/>
 @using Chat.Models;
 
   @foreach(Message m in Model)
   {
     if(m.SenderId==ViewBag.MyId)
     {
-    <p>@ViewBag.MyName.UserName: @m.Text </p>
+    <p class="sender-mes shadow">@ViewBag.MyName.UserName: @m.Text </p>
     }else
     {
-      <p>@ViewBag.OtherName.UserName: @m.Text </p>
+      <p class="reciever-mes shadow">@ViewBag.OtherName.UserName: @m.Text </p>
     }
   }

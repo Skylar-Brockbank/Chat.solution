@@ -42,7 +42,6 @@ namespace Chat.Controllers
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       ViewBag.OtherId = id;
-      Console.WriteLine(id);
       ViewBag.MyId = userId;
       ViewBag.OtherName = _db.ChatUsers.FirstOrDefault(user => user.Id == id);
       ViewBag.MyName = _db.ChatUsers.FirstOrDefault(user => user.Id == userId);
@@ -52,13 +51,20 @@ namespace Chat.Controllers
     [HttpPost]
     public ActionResult Details(string msg, string idtest, string metest)
     {
-      Console.WriteLine("I Ran");
-      Console.WriteLine(msg);
-      Console.WriteLine(idtest);
-      Console.WriteLine(metest);
       _db.Messages.Add(new Message(){SenderId = metest, RecieverId = idtest,Text = msg});
       _db.SaveChanges();
       return RedirectToAction("Details", new{id = idtest});
+    }
+    [HttpGet ("/LoadMessages/{id}")]
+    public ActionResult LoadMessages(string id)
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ViewBag.OtherId = id;
+      ViewBag.MyId = userId;
+      ViewBag.OtherName = _db.ChatUsers.FirstOrDefault(user => user.Id == id);
+      ViewBag.MyName = _db.ChatUsers.FirstOrDefault(user => user.Id == userId);
+      List<Message> messageList = (from Mes in _db.Messages where (Mes.SenderId == userId || Mes.RecieverId == userId)&&(Mes.SenderId== id || Mes.RecieverId==id) select Mes).ToList();
+      return PartialView("_Partial" ,messageList);
     }
   }
 }
